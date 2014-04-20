@@ -39,7 +39,7 @@ body {
 	line-height: 1.33;
 	text-transform: uppercase;
 	text-align: right;
-	font: 12px verdana,sans-serif
+	font: 15px verdana,sans-serif
 }
 
 
@@ -63,7 +63,7 @@ body {
 	top: 10px;
 	left: 20px;
 	margin: 0px;
-	font-size: 20px;
+	font-size: 25px;
 	line-height: 1.33;
 	font-weight: bold;
 	text-transform: uppercase;
@@ -93,6 +93,62 @@ body {
 
 
 
+
+
+
+#question-label {
+	position: relative;
+	top: 50px;
+	font-size: 14px;
+	font-weight: bold;
+	text-transform: uppercase;
+	text-align: left;
+	
+}
+
+
+
+#p1-question{
+	position: relative;
+	padding: 10px 0 0 0 ;
+	top: 70px;
+	height: 30px;
+	font-size: 15px;
+	background: white;
+	text-align: center;
+	vertical-align: middle;
+}
+#vp-question{
+	position: relative;
+	padding: 10px 0 0 0 ;
+	top: 70px;
+	height: 30px;
+	font-size: 15px;
+	background: white;
+	text-align: center;
+	vertical-align: middle;
+}
+
+
+#answer {
+	position: relative;
+	padding: 10px 0 0 0 ;
+	top: 100px;
+	height: 30px;
+	font-size: 15px;
+	text-align: center;
+	vertical-align: middle;
+}
+
+#load-game{
+	position: relative;
+	padding: 10px 0 0 0 ;
+	top: 200px;
+	height: 30px;
+	font-size: 15px;
+	text-align: center;
+	vertical-align: middle;
+}
 
 
 /* @group menu */
@@ -214,6 +270,7 @@ body {
 	height: 475px;
 	padding: 10px 20px;
 	background: none repeat scroll 0% 0% rgb(136, 162, 168);
+	color: blue;
 	}
 	
 #left h3 {
@@ -221,7 +278,6 @@ body {
 	font-size: 15px;
 	font-weight: bold;
 	position: relative; 
-	color:rgb(0, 0, 0)
 	}
 
 	
@@ -279,6 +335,7 @@ body {
 	width: 300px;
 	height: 475px;
 	padding: 10px 20px;
+	color: red;
 	background: none repeat scroll 0% 0% rgb(136, 162, 168);
 	}
 	
@@ -287,7 +344,6 @@ body {
 	font-size: 15px;
 	font-weight: bold;
 	position: relative; 
-	color:rgb(0, 0, 0)
 	}
 	
 #right h3 span {
