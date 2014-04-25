@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-<title>Deadlock</title>
+<title>Heavily Contended Locks</title>
 <link rel="stylesheet" href="data/mystyle.css" type="text/css"
 	media="screen">
 <style type="text/css" id="css">
@@ -109,7 +109,10 @@
 				var a =xmlhttp.responseText;
 				arr = a.split("|");
 				document.userForm.question.value = arr[0];
-				document.vpForm.question.value = arr[1];
+				document.vpForm.question.style.backgroundImage = "url('data/wait1.png')";
+				document.vpForm.question.style.backgroundRepeat="no-repeat"
+				document.vpForm.question.style.backgroundSize="50px 50px"
+				document.vpForm.question.style.backgroundPosition="top center"
 				document.getElementById("lockingText").style.visibility = "visible";
 				document.userForm.submit.disabled=false;
 			}
@@ -117,50 +120,70 @@
 
 	}
 
-	var i=2;
+	var i=1;
 	function nextQuest(){
-		if( i==2 || i==3) {
+		if( i==1) {
+			document.vpForm.question.style.backgroundImage = "none";
+			document.vpForm.question.value = arr[i-1];
 			document.userForm.question.value = arr[i];
 			document.getElementById("lockingText"+i).style.visibility = "visible";
-			document.vpForm.answer.value = "";
+			document.userForm.answer.value = "";
+			document.vpForm.submit.disabled=false;
+			document.userForm.submit.disabled=true;
+			i=i+1;
+		}
+		else if(i==2) {
 			document.vpForm.question.value = "";
+			document.vpForm.answer.value = "";
 			document.vpForm.question.style.backgroundImage = "url('data/wait1.png')";
 			document.vpForm.question.style.backgroundRepeat="no-repeat"
 			document.vpForm.question.style.backgroundSize="50px 50px"
 			document.vpForm.question.style.backgroundPosition="top center"
-			document.userForm.answer.value="";
-			i=i+1;
+			document.getElementById("lockingText"+i).style.visibility = "visible";
+			document.vpForm.submit.disabled=true;
+			var theDelay = 7;
+  			var timer = setTimeout("showDialog()",theDelay*1000)
 		}
 		else {
-			document.getElementById("lockingText4").style.visibility = "visible";
-			document.userForm.answer.value = "";
-			document.userForm.question.value = "";
-			document.userForm.question.style.backgroundImage = "url('data/wait1.png')";
-			document.userForm.question.style.backgroundRepeat="no-repeat"
-			document.userForm.question.style.backgroundSize="50px 50px"
-			document.userForm.question.style.backgroundPosition="top center"
- 			document.userForm.submit.disabled="disabled";
-			document.load.loadButton.disabled="disabled";
-			var theDelay = 7;
-  			var timer = setTimeout("Freeze()",theDelay*1000)
+			if(i==5) {
+				Alert.render("Emma Wins!!!");
+				var theDelay = 5;
+	  			var timer = setTimeout("Starvation()",theDelay*1000)
+			}
+			else {
+				document.vpForm.question.value = arr[i-1];
+				document.vpForm.answer.value = "";
+				document.userForm.question.style.backgroundImage = "none";
+				document.userForm.question.value = arr[i-2];
+				i=i+1;
+			}
 		}
 	}
 
-	function Freeze(){
-		var dialogoverlay = document.getElementById('dialogoverlay');
-		dialogoverlay.style.display = "block";
-		dialogoverlay.style.height = winH+"px";
-		dialogoverlay.innerHTML = '<img src="data/deadlock.png" width="20" height="20" title="Lock" alt="Lock" align="right" />';
+	function setPriority(){
+		document.userForm.question.value = "";
+		document.userForm.answer.value = "";
+		document.userForm.question.style.backgroundImage = "url('data/wait1.png')";
+		document.userForm.question.style.backgroundRepeat="no-repeat"
+		document.userForm.question.style.backgroundSize="50px 50px"
+		document.userForm.question.style.backgroundPosition="top center"
+		document.vpForm.question.style.backgroundImage = "none";
+		document.vpForm.question.value = arr[i-1];
+		document.vpForm.submit.disabled=false;
+		i=i+1;
+		document.getElementById("lockingText"+i).style.visibility = "visible";
 	}
 
-	function Deadlock(){
-		var dialogoverlay = document.getElementById('dialogoverlay');
-		dialogoverlay.style.display = "block";
-		dialogoverlay.style.height = winH+"px";
-		dialogoverlay.innerHTML = '<img src="data/deadlock.png" width="20" height="20" title="Lock" alt="Lock" align="right" />';
-// 		dialogoverlay.style.backgroundImage = "url('data/deadlock.png')";
-// 		dialogoverlay.style.backgroundRepeat="no-repeat"
-// 		dialogoverlay.style.backgroundSize="100% 100%"
+	function showDialog(){
+		Alert.render("Threads that all use the same lock become queued to use the lock and end up serializing the processing.\n " + 
+				"Lower priority threads can slow down the higher priority threads as they queue up for the lock.");
+		document.getElementById("priority").style.visibility ="visible";
+		document.getElementById("priorityText").style.visibility ="visible";
+	}
+
+	function Starvation(){
+		Alert.render("If there is always a higher priority process ready, a lower priority process will never be run leading to STARVATION.\n" + 
+				"In this case VP and Bob never got the chance to lock the question first and thus lost the game");
 	}
 	</script>
 
@@ -182,7 +205,7 @@
 			<center>Parallel Programming Pitfalls</center>
 		</h1>
 		<h2>
-			<center>Deadlock</center>
+			<center>Heavily Contended Locks</center>
 		</h2>
 		<div align="right">
 			<a href="index.php" style="color: #CC0000"><right> HOME </right></a>
@@ -221,50 +244,49 @@
 		<div id="middle">
 			<h3>Stack Traces</h3>
 			<div id="bobText" style="visibility: hidden; color: Green">
-				<h3>Bob Enters</h3>
+				<p>Bob and Emma Enters</p>
 			</div>
 			<div id="compText" style="visibility: hidden; color: Yellow">
-				<h3>Virtual Player Enters</h3>
+				<p>Virtual Player Enters</p>
 			</div>
 			<div id="lockingText" style="visibility: hidden; color: Green">
-				<h3 style="color: Green">Bob locks Question1</h3>
-				<h3 style="color: Yellow">VP locks Question2</h3>
+				<p style="color: Green">Bob locks Question1</p>
+				<p style="color: Yellow">Emma and VP queues to lock Question1</p>
+			</div>
+			<div id="lockingText1" style="visibility: hidden; color: Yellow">
+				<p style="color: Yellow">Emma locks Question1, Bob locks Question2</p>
+				<p style="color: Green">VP still in queue to acquire lock on Question1</p>
 			</div>
 			<div id="lockingText2" style="visibility: hidden; color: Yellow">
-				<h3 style="color: Yellow">Bob locks Question3</h3>
-				<h3 style="color: Green">VP waits to acquire lock on Question3</h3>
+				<p style="color: Yellow">Bob is still on Question2, VP gets Question1</p>
+				<p style="color: Green">Emma again in queue to acquire lock on Question2</p>
 			</div>
 			<div id="lockingText3" style="visibility: hidden; color: Yellow">
-				<h3 style="color: Yellow">Bob locks Question4</h3>
-				<h3 style="color: Green">VP still waiting to acquire lock on
-					Question3</h3>
+				<h3 style="color: Yellow">Emma increases priority and gets Question2</h3>
+				<h3 style="color: Green">Bob gets in queue to lock the question</h3>
 			</div>
-			<div id="lockingText4" style="visibility: hidden; color: Yellow">
-				<h3 style="color: Yellow">Bob is waiting to acquire lock on Question2
-					held by VP</h3>
-				<h3 style="color: Green">VP is waiting to acquire lock on Question3
-					which is held by Bob</h3>
-			</div>
-			<br /> <br /> <br /> <br />
+			<br/><br/><br/><br/>
 		</div>
 
 		<div id="right">
-			<h3>Virtual Player (VP)</h3>
+			<h3>P2: Emma</h3>
 			<br /> <br />
 			<h3>QUESTION:</h3>
 			<br />
 			<form name="vpForm">
 				<input type="text" name="question"
 					style="width: 300px; height: 50px;" readonly="readonly"></input> <br />
-				<br /> <br /> <input type="text" name="answer"
-					style="width: 200px; height: 30px;" readonly="readonly"></input> <br />
-				<br /> <input type="button" value="Submit" disabled="disabled"> </input>
+				<br /> <br /> <input type="text" name="answer" style="width: 200px; height: 30px;"></input> <br />
+				<br /> <input type="button" onclick="nextQuest()" value="Submit" name="submit" disabled="disabled"> </input>
 			</form>
-			<br /> <br /> <br /> <br />
+			<br /> 
+			<div id="priority" style="visibility: hidden;">
+				<input type="radio" name="Priority" onClick="setPriority()" value="Increase My Priority">Increase My Priority?
+			</div>
+			 <br />
 			<div id="load-game">
 				<form>
-					<input type="button" onclick="loadGame()" value="Load Game"
-						disabled="disabled"> </input>
+					<input type="button" onclick="loadGame()" value="Load Game"> </input>
 				</form>
 			</div>
 			<img src="data/Lock.jpg" width="20" height="20" title="Lock"
