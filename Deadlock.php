@@ -70,7 +70,8 @@
 		}
 		this.ok = function() {
 			document.getElementById('dialogbox').style.display = "none";
-			document.getElementById('dialogoverlay').style.display = "none";			
+			document.getElementById('dialogoverlay').style.display = "none";	
+			document.getElementById("analogy").style.visibility = "visible";		
 		}
 	}
 	var Alert = new CustomAlert();
@@ -78,7 +79,7 @@
 		var theDelay = 1;
   		var timer = setTimeout("showText()",theDelay*1000)
 		var timer2 = setTimeout("showVPText()",(theDelay+1.5)*1000)
-		var timer3 = setTimeout("loadText()",(theDelay+5)*1000)
+		//var timer3 = setTimeout("loadText()",(theDelay+7)*1000)
 	}
 	function showText(){
   		document.getElementById("bobText").style.visibility = "visible";
@@ -86,8 +87,12 @@
 	function showVPText(){
   		document.getElementById("compText").style.visibility = "visible";
 	}
+	var load=false;
 	function loadText(){
-  		Alert.render("Click on Load Game Button")
+		if(load==false){
+  			Alert.render("Click on Load Game Button")
+  			load=true;
+		}	
 	}
 
 	var arr = new Array();
@@ -109,17 +114,24 @@
 				var a =xmlhttp.responseText;
 				arr = a.split("|");
 				document.userForm.question.value = arr[0];
-				document.vpForm.question.value = arr[1];
+				document.vpForm.question.value = arr[2];
 				document.getElementById("lockingText").style.visibility = "visible";
 				document.userForm.submit.disabled=false;
+				document.getElementById("Q1").style.visibility = "hidden";
+				document.getElementById("Q4").style.visibility = "hidden";
+				document.getElementById("lockImage2").style.visibility = "visible";
+				document.getElementById("lockImage1").style.visibility = "visible";
+				document.load.loadButton.disabled=true;
+				document.getElementById("text1").style.backgroundColor="#00FF00"
+				document.getElementById("text2").style.backgroundColor="#00FF00"
 			}
 		}
 
 	}
 
-	var i=2;
+	var i=1;
 	function nextQuest(){
-		if( i==2 || i==3) {
+		if( i==1 ) {
 			document.userForm.question.value = arr[i];
 			document.getElementById("lockingText"+i).style.visibility = "visible";
 			document.vpForm.answer.value = "";
@@ -129,6 +141,11 @@
 			document.vpForm.question.style.backgroundSize="50px 50px"
 			document.vpForm.question.style.backgroundPosition="top center"
 			document.userForm.answer.value="";
+			document.getElementById("Q2").style.visibility = "hidden";
+			document.getElementById("text3").style.backgroundColor="#00FF00"
+			document.getElementById("text4").style.backgroundColor="#00FF00"
+			document.getElementById("text1").style.backgroundColor="initial"
+			document.getElementById("text2").style.backgroundColor="initial"
 			i=i+1;
 		}
 		else {
@@ -141,7 +158,9 @@
 			document.userForm.question.style.backgroundPosition="top center"
  			document.userForm.submit.disabled="disabled";
 			document.load.loadButton.disabled="disabled";
-			var theDelay = 7;
+			document.getElementById("text3").style.backgroundColor="initial"
+			document.getElementById("text5").style.backgroundColor="#00FF00"
+			var theDelay = 8;
   			var timer = setTimeout("Freeze()",theDelay*1000)
 		}
 	}
@@ -153,19 +172,10 @@
 		dialogoverlay.innerHTML = '<img src="data/deadlock.png" width="20" height="20" title="Lock" alt="Lock" align="right" />';
 	}
 
-	function Deadlock(){
-		var dialogoverlay = document.getElementById('dialogoverlay');
-		dialogoverlay.style.display = "block";
-		dialogoverlay.style.height = winH+"px";
-		dialogoverlay.innerHTML = '<img src="data/deadlock.png" width="20" height="20" title="Lock" alt="Lock" align="right" />';
-// 		dialogoverlay.style.backgroundImage = "url('data/deadlock.png')";
-// 		dialogoverlay.style.backgroundRepeat="no-repeat"
-// 		dialogoverlay.style.backgroundSize="100% 100%"
-	}
 	</script>
 
 </head>
-<body style="background-color: white">
+<body style="background-color: white" onclick="loadText()">
 	<div id="dialogoverlay"></div>
 	<div id="dialogbox">
 		<div>
@@ -192,83 +202,105 @@
 
 	<div id="content">
 		<div id="left">
-			<h3>P1: Bob</h3>
-			<br /> <br />
+			<div id="resources" ><center>
+				Resources:
+				<button id="Q1" style="background-color:#E96D63; color:#7FCA9F">Q1</button>
+				<button id="Q2" style="background-color:#E96D63; color:#7FCA9F">Q2</button>
+				<button id="Q3" style="background-color:#E96D63; color:#7FCA9F">Q3</button>
+				</center>
+			</div>
+			<br />
+			<h3>Bob (Process 1)</h3>
+			<br /> 
 			<h3>QUESTION:</h3>
 			<br />
 			<form name="userForm">
 				<div id="p1-question">
 					<input type="text" name="question"
-						style="width: 300px; height: 50px;" readonly="readonly"></input>
+						style="width: 300px; height: 50px;font-family: Comic Sans MS;font-size: 15pt;" readonly="readonly"></input>
 				</div>
 				<br /> <br /> <input type="text" name="answer"
 					style="width: 200px; height: 30px;"></input> <br /> <br /> <input
-					type="button" onclick="nextQuest()" value="Submit" name="submit" disabled="disabled"> </input>
+					type="button" onclick="nextQuest()" value="Submit" name="submit" disabled="disabled" style="font-size:30pt;"> </input>
 			</form>
 			<br /> <br /> <br /> <br />
 			<div id="load-game">
 				<form name="load">
 					<input type="button" onclick="loadGame()" value="Load Game"
-						name="loadButton"> </input>
+						name="loadButton" style="font-size:30pt;"> </input>
 				</form>
 			</div>
-
-			<img src="data/Lock.jpg" width="20" height="20" title="Lock"
-				alt="Lock" align="right" /> <br /> <br />
+			<br/>
+			<img id="lockImage1" src="data/Lock.jpg" width="80" height="80" title="Lock"
+				alt="Lock" align="right" style="visibility: hidden;"/><br /> <br />
 
 		</div>
 
 		<div id="middle">
 			<h3>Stack Traces</h3>
-			<div id="bobText" style="visibility: hidden; color: Green">
-				<h3>Bob Enters</h3>
+			<div id="bobText" style="visibility: hidden; color: #FFCC00">
+				<h3>--------->  Bob Enters</h3>
 			</div>
 			<div id="compText" style="visibility: hidden; color: Yellow">
-				<h3>Virtual Player Enters</h3>
+				<h3>&nbsp;&nbsp;---------> Virtual Player Enters</h3>
 			</div>
 			<div id="lockingText" style="visibility: hidden; color: Green">
-				<h3 style="color: Green">Bob locks Question1</h3>
-				<h3 style="color: Yellow">VP locks Question2</h3>
+				<h3 style="color: Green">--------->  Bob locks Question1</h3>
+				<h3 style="color: Yellow">&nbsp;&nbsp;---------> VP locks Question3</h3>
 			</div>
-			<div id="lockingText2" style="visibility: hidden; color: Yellow">
-				<h3 style="color: Yellow">Bob locks Question3</h3>
-				<h3 style="color: Green">VP waits to acquire lock on Question3</h3>
-			</div>
-			<div id="lockingText3" style="visibility: hidden; color: Yellow">
-				<h3 style="color: Yellow">Bob locks Question4</h3>
-				<h3 style="color: Green">VP still waiting to acquire lock on
-					Question3</h3>
+			<div id="lockingText1" style="visibility: hidden; color: Yellow">
+				<h3 style="color: Yellow">--------->  Bob locks Question2</h3>
+				<p style="color: Green">&nbsp;&nbsp;---------> VP waits to acquire lock on Question1</p>
 			</div>
 			<div id="lockingText4" style="visibility: hidden; color: Yellow">
-				<h3 style="color: Yellow">Bob is waiting to acquire lock on Question2
+				<h3 style="color: Yellow">--------->  Bob is waiting to acquire lock on Question3
 					held by VP</h3>
-				<h3 style="color: Green">VP is waiting to acquire lock on Question3
+				<h3 style="color: Green">&nbsp;&nbsp;---------> VP is waiting to acquire lock on Question1
 					which is held by Bob</h3>
 			</div>
-			<br /> <br /> <br /> <br />
+			<h3>
+			<div id="analogy" style="color: #FF9900; visibility: hidden;">
+				<span style="float: left">Process1() { </span> <span style="float: right">Process2() { &nbsp;&nbsp;&nbsp;&nbsp;</span>
+				<br/><span id="text1" style="float: left">&nbsp;&nbsp;	Lock Q1;</span> <span id="text2" style="float: right">&nbsp;&nbsp;	Lock Q3;</span>
+				<br/><span id="text3" style="float: left">&nbsp;&nbsp;	Lock Q2;</span> <span id="text4" style="float: right">&nbsp;&nbsp;	Lock Q1;</span>
+				<br/><span id="text5" style="float: left">&nbsp;&nbsp;	Lock Q3;</span> <span style="float: right">&nbsp;&nbsp;	Lock Q2;</span>
+				<br/><span style="float: left">&nbsp;&nbsp;	UnLock Q1;</span> <span style="float: right">&nbsp;&nbsp;	UnLock Q3;</span>
+				<br/><span style="float: left">&nbsp;&nbsp;	UnLock Q2;</span> <span style="float: right">&nbsp;&nbsp;	UnLock Q1;</span>
+				<br/><span style="float: left">&nbsp;&nbsp;	UnLock Q3;</span> <span style="float: right">&nbsp;&nbsp;	UnLock Q2;</span>
+				<br/><span style="float: left">} </span> <span style="float: right"> }&nbsp;&nbsp;&nbsp;&nbsp; </span>
+			</div></h3>
+			<br/>
 		</div>
 
 		<div id="right">
-			<h3>Virtual Player (VP)</h3>
-			<br /> <br />
+			<div id="resources2"><center>
+			Resources:
+				<button id="Q4" style="background-color:#E96D63; color:#7FCA9F"3>Q3</button>
+				<button id="Q5" style="background-color:#E96D63; color:#7FCA9F" >Q1</button>
+				<button id="Q6" style="background-color:#E96D63; color:#7FCA9F">Q2</button>
+				</center>
+			</div>
+			<br />
+			<h3>Virtual Player (VP) (Process 2)</h3>
+			<br /> 
 			<h3>QUESTION:</h3>
 			<br />
 			<form name="vpForm">
 				<input type="text" name="question"
-					style="width: 300px; height: 50px;" readonly="readonly"></input> <br />
+					style="width: 300px; height: 50px;font-family: Comic Sans MS;font-size: 15pt;" readonly="readonly"></input> <br />
 				<br /> <br /> <input type="text" name="answer"
 					style="width: 200px; height: 30px;" readonly="readonly"></input> <br />
-				<br /> <input type="button" value="Submit" disabled="disabled"> </input>
+				<br /> <input type="button" value="Submit" disabled="disabled" style="font-size:30pt; font-family: Comic Sans MS;"> </input>
 			</form>
 			<br /> <br /> <br /> <br />
 			<div id="load-game">
 				<form>
 					<input type="button" onclick="loadGame()" value="Load Game"
-						disabled="disabled"> </input>
+						disabled="disabled" style="font-size:30pt; font-family: 'Comic Sans MS';"> </input>
 				</form>
-			</div>
-			<img src="data/Lock.jpg" width="20" height="20" title="Lock"
-				alt="Lock" align="left" /> <br /> <br /> <br /> <br />
+			</div><br/>
+			<img id="lockImage2" src="data/Lock.jpg" width="80" height="80" title="Lock"
+				alt="Lock" align="left" style="visibility: hidden;"/> <br /> <br /> <br /> <br />
 		</div>
 	</div>
 
