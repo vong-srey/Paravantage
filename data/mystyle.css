@@ -37,16 +37,25 @@ body {
 	position: relative;
 	padding: 10px;
 	float: right;
-	width: 33.69%;
+	width: 33%;
 	height: 100%;
-	background: none repeat scroll 0% 0% rgb(136, 162, 168);
+	background: none repeat scroll 0% 0% rgb(100, 140, 140);
 	color: blue;
 	}
 #middle {
 	position: relative;
 	padding: 10px;
 	float: left;
-	width: 31.1%;
+	width: 15.05%;
+	height: 100%;
+	background: none repeat scroll 0% 0% rgb(136, 162, 168);
+	color: blue;
+	}
+#middleleft {
+	position: relative;
+	padding: 10px;
+	float: left;
+	width: 15%;
 	height: 100%;
 	background: none repeat scroll 0% 0% rgb(100, 140, 140);
 	color: blue;
@@ -62,8 +71,5 @@ body {
 	font-size: 18px;
 	width: 90%;
 	left: 5%;
-	margin-top:520px
+	margin-top:490px
 	}
-
-
-
