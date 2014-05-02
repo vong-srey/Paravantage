@@ -74,13 +74,18 @@
 			document.getElementById('dialogbox').style.display = "none";
 			document.getElementById('dialogoverlay').style.display = "none";	
 			document.getElementById("analogy").style.visibility = "visible";
-			document.getElementById("analogy2").style.visibility = "visible";
 		}
 	}
 	var Alert = new CustomAlert();
 	window.onload = function(){
+		var right = document.getElementById("right");
+		var right2 = document.getElementById("middleleft");
+		right.style.backgroundColor = "#FFF";
+		right.style.borderColor="blue";
+		right2.style.borderColor="blue";
+		right2.style.backgroundColor = "#FFF";
 		var theDelay = 5;
-		var timer = setTimeout("loadText()",(theDelay)*1000)
+		var timer3 = setTimeout("loadText()",(5)*1000)
 	}
 	
 	function loadText(){
@@ -108,94 +113,72 @@
 				document.userForm.question.value = arr[0];
 				document.userForm.submit.disabled=false;
 				document.getElementById("lockbutton").style.visibility = "visible";
-				document.getElementById("Q1").style.visibility = "hidden";
-				document.getElementById("L1").style.visibility = "hidden";
+				document.getElementById("Q0").style.visibility = "hidden";
+				document.getElementById("L0").style.visibility = "hidden";
 				document.load.loadButton.disabled=true;
 				document.getElementById("BobQ1").style.visibility = "visible";
 				document.getElementById("text1").style.backgroundColor="#00FF00"
-				document.getElementById("lockImage1").style.visibility = "visible";
+				document.getElementById("lockImage0").style.visibility = "visible";
 				document.getElementById("lockbutton").style.visibility = "visible";
 				document.getElementById("arrow").style.visibility = "hidden";
 				document.getElementById("arrow1").style.visibility = "visible";
-				var theDelay = 5;
-		  		var timer = setTimeout("VPanalogy()",theDelay*1000)
 			}
 		}
 
 	}
-
-	function VPanalogy(){
-		document.vpForm.question.value = arr[2];
-		document.getElementById("Q3").style.visibility = "hidden";
-		document.getElementById("L3").style.visibility = "hidden";
-		document.getElementById("VPQ3").style.visibility = "visible";
-		document.getElementById("text4").style.backgroundColor="#00FF00";
-		document.getElementById("lockImage2").style.visibility = "visible";
-		document.getElementById("lockbutton2").style.visibility = "visible";
-	}
-
-	
 	
 	function nextQuest(){
 		document.getElementById("Bob" + index).style.backgroundColor="#00FF00";
 		document.getElementById("arrow"+index).style.visibility = "hidden";
-		if(index==1) {
-			document.getElementById("VP"+index).style.backgroundColor="#00FF00";
-		}
 		document.userForm.submit.disabled=true;
-		document.userForm.lockbutton.disabled=false;
+		if(index <5) {
+			document.userForm.lockbutton.disabled=false;
+		}
+		else {
+			document.userForm.lockbutton.disabled=false;
+			document.userForm.lockbutton.value="Unlock";
+		}
 		index=index+1;
 		document.getElementById("arrow"+index).style.visibility = "visible";
 	}
-	
+
+	var counter=4;
 	function nextLock(){
-		if( index==2 ) {
+		if( index<6 ) {
 			document.userForm.question.value = arr[index-1];
-			document.vpForm.answer.value = "";
-			document.vpForm.question.value = "";
-			document.vpForm.question.style.backgroundImage = "url('data/wait1.png')";
-			document.vpForm.question.style.backgroundRepeat="no-repeat"
-			document.vpForm.question.style.backgroundSize="50px 50px"
-			document.vpForm.question.style.backgroundPosition="top center"
 			document.userForm.answer.value="";
 			document.getElementById("Bob"+index).style.backgroundColor="#00FF00"
-			document.getElementById("VP" +index).style.backgroundColor="#FF0000"
-			document.getElementById("Q2").style.visibility = "hidden";
-			document.getElementById("L2").style.visibility = "hidden";
-			document.getElementById("BobQ2").style.visibility = "visible";
+			document.getElementById("Q"+index).style.visibility = "hidden";
+			document.getElementById("L"+index).style.visibility = "hidden";
+			document.getElementById("BobQ"+index).style.visibility = "visible";
 			document.userForm.submit.disabled=false;
 			document.userForm.lockbutton.disabled=true;
-			document.getElementById("lockImage3").style.visibility = "visible";
+			document.getElementById("lockImage"+index).style.visibility = "visible";
 			document.getElementById("arrow"+index).style.visibility = "hidden";
 			index=index+1;
 			document.getElementById("arrow"+index).style.visibility = "visible";
 		}
+		else if(index <8) {
+			document.getElementById("arrow"+index).style.visibility = "hidden";
+			document.getElementById("Bob"+index).style.backgroundColor="#00FF00"
+			index=index+1;
+			document.getElementById("lockImage"+counter).style.visibility = "hidden";
+			document.getElementById("Q"+counter).style.visibility = "visible";
+			document.getElementById("L"+counter).style.visibility = "visible";
+			counter =counter-2;
+			document.getElementById("arrow"+index).style.visibility = "visible";
+// 			var theDelay = 8;
+//   			var timer = setTimeout("Freeze()",theDelay*1000)
+		}
 		else {
-			document.userForm.answer.value = "";
-			document.userForm.question.value = "";
-			document.userForm.question.style.backgroundImage = "url('data/wait1.png')";
-			document.userForm.question.style.backgroundRepeat="no-repeat"
-			document.userForm.question.style.backgroundSize="50px 50px"
-			document.userForm.question.style.backgroundPosition="top center"
- 			document.userForm.submit.disabled="disabled";
-			document.load.loadButton.disabled="disabled";
+			document.getElementById("lockImage"+counter).style.visibility = "hidden";
+			document.getElementById("L"+counter).style.visibility = "visible";
+			document.getElementById("Q"+counter).style.visibility = "visible";
+			document.getElementById("Bob"+index).style.backgroundColor="#00FF00"
+			Alert.render("Bob Wins!!!");
 			document.userForm.lockbutton.disabled=true;
-			document.getElementById("Bob"+index).style.backgroundColor="#FF0000"
-			var theDelay = 8;
-  			var timer = setTimeout("Freeze()",theDelay*1000)
 		}
 	}
-
-	function Freeze(){
-		var dialogoverlay = document.getElementById('dialogoverlay');
-         dialogoverlay.innerHTML = '<img src="data/deadlock.png" width="500" height="500" title="Lock" alt="Lock" align="center" onclick="unfreeze()" />';
-		dialogoverlay.style.display = "block";
-		dialogoverlay.style.height = winH+"px";
-	}
-	function unfreeze(){
-		document.getElementById('dialogoverlay').style.display = "none";
-	}
-
 	</script>
 
 </head>
@@ -220,7 +203,7 @@
 		</h2>
 			<button id="disable"
 				style="font-family: Comic Sans MS; background-color: #E96D63; color: #7FCA9F; font-size: 10pt;"
-				onclick="window.location.href='Deadlock2.php'">Disable VP</button>
+				onclick="window.location.href='Deadlock.php'">Enable VP</button>
 
 			<span style="float: right;"> <a href="index.php"
 				style="color: #CC0000"><right> HOME </right></a>
@@ -233,13 +216,13 @@
 		<div id="resources"
 			style="font-family: Comic Sans MS; color: #E96D63; font-size: 12pt;">
 			<center>
-				Shared &nbsp;&nbsp; Resources:&nbsp;&nbsp; <span id="Q1"
+				Shared &nbsp;&nbsp; Resources:&nbsp;&nbsp; <span id="Q0"
 					style="color: #7FCA9F">Q1</span>&nbsp;&nbsp; <span id="Q2"
-					style="color: #7FCA9F">Q2</span>&nbsp;&nbsp; <span id="Q3"
+					style="color: #7FCA9F">Q2</span>&nbsp;&nbsp; <span id="Q4"
 					style="color: #7FCA9F">Q3</span>&nbsp;&nbsp;
-				&nbsp;&nbsp;&nbsp;&nbsp; Locks:&nbsp;&nbsp; <span id="L1"
+				&nbsp;&nbsp;&nbsp;&nbsp; Locks:&nbsp;&nbsp; <span id="L0"
 					style="color: #7FCA9F">L1</span>&nbsp;&nbsp; <span id="L2"
-					style="color: #7FCA9F">L2</span>&nbsp;&nbsp; <span id="L3"
+					style="color: #7FCA9F">L2</span>&nbsp;&nbsp; <span id="L4"
 					style="color: #7FCA9F">L3</span>
 			</center>
 		</div>
@@ -251,6 +234,8 @@
 				QUESTION: &nbsp;&nbsp;&nbsp;&nbsp; <span id="BobQ1"
 					style="visibility: hidden; color: #7FCA9F">Q1</span> <span
 					id="BobQ2" style="visibility: hidden; color: #7FCA9F"> , Q2</span>
+					<span
+					id="BobQ4" style="visibility: hidden; color: #7FCA9F"> , Q3</span>
 			</h3>
 			<br />
 			<form name="userForm">
@@ -278,11 +263,13 @@
 						style="font-size: 30pt;"> </input>
 				</form>
 			</div>
-			<br /> <img id="lockImage1" src="data/Lock.jpg" width="80"
+			<br /> <img id="lockImage0" src="data/Lock.jpg" width="80"
 				height="80" title="L1" alt="L1" align="left"
-				style="visibility: hidden;" /><img id="lockImage3"
+				style="visibility: hidden;" /><img id="lockImage2"
 				src="data/Lock.jpg" width="80" height="80" title="L2" alt="L2"
-				align="left" style="visibility: hidden;" /><br /> <br /> <br /> <br />
+				align="left" style="visibility: hidden;" /><img id="lockImage4" src="data/Lock.jpg" width="80"
+				height="80" title="L3" alt="L3" align="left"
+				style="visibility: hidden;" /><br /> <br /> <br /> <br />
 			<br /> <br />
 		</div>
 
@@ -300,21 +287,26 @@
 						style="visibility: hidden;">&rarr;</span><span id="Bob3">&nbsp;&nbsp;
 						Answer Q2;</span> <br /> <span id="arrow4"
 						style="visibility: hidden;">&rarr;</span><span id="Bob4">&nbsp;&nbsp;
-						Lock Q3;</span> <br /> <span id="text3" style="float: left">&nbsp;&nbsp;
-						Answer Q3;</span> <br /> <span style="float: left">&nbsp;&nbsp;
-						UnLock Q3;</span> <br /> <span style="float: left">&nbsp;&nbsp;
-						UnLock Q2;</span> <br /> <span style="float: left">&nbsp;&nbsp;
-						UnLock Q1;</span> <br /> <span style="float: left">} </span>
+						Lock Q3;</span> <br />
+						<span id="arrow5"
+						style="visibility: hidden;">&rarr;</span> <span id="Bob5">&nbsp;&nbsp;
+						Answer Q3;</span> <br /> <span id="arrow6"
+						style="visibility: hidden;">&rarr;</span><span id="Bob6">&nbsp;&nbsp;
+						UnLock Q3;</span> <br /> <span id="arrow7"
+						style="visibility: hidden;">&rarr;</span><span id="Bob7">&nbsp;&nbsp;
+						UnLock Q2;</span> <br /> <span id="arrow8"
+						style="visibility: hidden;">&rarr;</span><span id="Bob8">&nbsp;&nbsp;
+						UnLock Q1;</span> <br /> <span >} </span>
 				</div>
 			</h2>
 			<br />
 		</div>
 
-		<div id="middleleft">
+		<div id="middleleft" style="color: #C6C6C6;">
 			<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
 			<br />
 			<h2>
-				<div id="analogy2" style="color: #00C90D; visibility: hidden;">
+				<div id="analogy2" style="visibility: hidden;">
 					<span style="float: left">Thread2() { &nbsp;&nbsp;&nbsp;&nbsp;</span>
 					<br /> <span id="text4" style="float: left">&nbsp;&nbsp; Lock Q3;</span>
 					<br /> <span id="VP1" style="float: left">&nbsp;&nbsp; Answer Q3;</span>
@@ -322,9 +314,9 @@
 					<br /> <span style="float: left">&nbsp;&nbsp; Answer Q1;</span> <br />
 					<span style="float: left">&nbsp;&nbsp; Lock Q2;</span> <br /> <span
 						style="float: left">&nbsp;&nbsp; Answer Q2;</span> <br /> <span
-						style="float: left">&nbsp;&nbsp; UnLock Q2;</span> <br /> <span
-						style="float: left">&nbsp;&nbsp; UnLock Q1;</span> <br /> <span
 						style="float: left">&nbsp;&nbsp; UnLock Q3;</span> <br /> <span
+						style="float: left">&nbsp;&nbsp; UnLock Q1;</span> <br /> <span
+						style="float: left">&nbsp;&nbsp; UnLock Q2;</span> <br /> <span
 						style="float: left"> }&nbsp;&nbsp;&nbsp;&nbsp; </span>
 				</div>
 			</h2>
@@ -332,7 +324,7 @@
 		</div>
 
 
-		<div id="right">
+		<div id="right" style="color: #C6C6C6;">
 
 			<h3>Virtual Player (VP) (Thread 2)</h3>
 			<br />
@@ -343,7 +335,7 @@
 			<br />
 			<form name="vpForm">
 				<input type="text" name="question"
-					style="width: 300px; height: 50px; font-family: Comic Sans MS; font-size: 15pt; color: blue; background-color: rgb(100, 140, 140);"
+					style="width: 300px; height: 50px; font-family: Comic Sans MS; font-size: 15pt; color: blue;"
 					readonly="readonly"></input> <br /> <br /> <br /> <input
 					type="text" name="answer" style="width: 200px; height: 30px;"
 					readonly="readonly"></input> <br /> <br /> <input type="button"
@@ -362,7 +354,7 @@
 						style="font-size: 30pt; font-family: Comic Sans MS;"> </input>
 				</form>
 			</div>
-			<br /> <img id="lockImage2" src="data/Lock.jpg" width="80"
+			<br /> <img id="lockImage21" src="data/Lock.jpg" width="80"
 				height="80" title="L3" alt="L3" align="left"
 				style="visibility: hidden;" /> <br /> <br /> <br /> <br /> <br /> <br />
 		</div>
