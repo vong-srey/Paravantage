@@ -49,6 +49,17 @@
 	padding: 10px;
 	text-align: right;
 }
+
+#arrow{		color: blue; }
+#arrow1{	color: blue; }
+#arrow2{	color: blue; }
+#arrow3{	color: blue; }
+#arrow4{	color: blue; }
+#arrow5{	color: blue; }
+#arrow6{	color: blue; }
+#arrow7{	color: blue; }
+#arrow8{	color: blue; }
+#arrow9{	color: blue; }
 </style>
 <script src="ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
 
@@ -84,8 +95,8 @@
 		right.style.borderColor="blue";
 		right2.style.borderColor="blue";
 		right2.style.backgroundColor = "#FFF";
-		var theDelay = 5;
-		var timer3 = setTimeout("loadText()",(5)*1000)
+		var theDelay = 1;
+		var timer3 = setTimeout("loadText()",(theDelay)*1000)
 	}
 	
 	function loadText(){
@@ -192,7 +203,7 @@
 		</div>
 	</div>
 
-	<!-- Header: Cinema's Logo and Search box +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+	<!-- Header:  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 	<div id="header"
 		style="background-color: rgb(68, 40, 45); font-family: verdana; color: white;">
 		<h1>

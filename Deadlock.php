@@ -49,11 +49,23 @@
 	padding: 10px;
 	text-align: right;
 }
+
+#arrow{	color: blue; }
+#arrow1{	color: blue; }
+#arrow2{	color: blue; }
+#arrow3{	color: blue; }
+#arrow4{	color: blue; }
+#arrow5{	color: blue; }
+#arrow6{	color: blue; }
+#arrow7{	color: blue; }
+#arrow8{	color: blue; }
+#arrow9{	color: blue; }
+
 </style>
 <script src="ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
 
 <script>
-
+	var deadlock = false;
 	var index=1;
 	function CustomAlert() {
 		this.render = function(dialog) {
@@ -79,7 +91,7 @@
 	}
 	var Alert = new CustomAlert();
 	window.onload = function(){
-		var theDelay = 5;
+		var theDelay = 1;
 		var timer = setTimeout("loadText()",(theDelay)*1000)
 	}
 	
@@ -117,7 +129,7 @@
 				document.getElementById("lockbutton").style.visibility = "visible";
 				document.getElementById("arrow").style.visibility = "hidden";
 				document.getElementById("arrow1").style.visibility = "visible";
-				var theDelay = 5;
+				var theDelay = 1;
 		  		var timer = setTimeout("VPanalogy()",theDelay*1000)
 			}
 		}
@@ -181,16 +193,23 @@
 			document.load.loadButton.disabled="disabled";
 			document.userForm.lockbutton.disabled=true;
 			document.getElementById("Bob"+index).style.backgroundColor="#FF0000"
-			var theDelay = 8;
-  			var timer = setTimeout("Freeze()",theDelay*1000)
+			var theDelay = 0.5;
+ 			var timer = setTimeout("setDeadlockFrozen()",theDelay*1000)
 		}
+	}
+	
+	
+	function setDeadlockFrozen(){
+		deadlock = true;
 	}
 
 	function Freeze(){
-		var dialogoverlay = document.getElementById('dialogoverlay');
-         dialogoverlay.innerHTML = '<img src="data/deadlock.png" width="500" height="500" title="Lock" alt="Lock" align="center" onclick="unfreeze()" />';
-		dialogoverlay.style.display = "block";
-		dialogoverlay.style.height = winH+"px";
+		if(deadlock){
+			var dialogoverlay = document.getElementById('dialogoverlay');
+	         dialogoverlay.innerHTML = '<img src="data/deadlock.png" width="500" height="500" title="Lock" alt="Lock" align="center" onclick="unfreeze()" />';
+			dialogoverlay.style.display = "block";
+			dialogoverlay.style.height = winH+"px";			
+		}
 	}
 	function unfreeze(){
 		document.getElementById('dialogoverlay').style.display = "none";
@@ -199,7 +218,7 @@
 	</script>
 
 </head>
-<body style="background-color: white">
+<body style="background-color: white" onclick="Freeze()">
 	<div id="dialogoverlay"></div>
 	<div id="dialogbox">
 		<div>
@@ -209,7 +228,7 @@
 		</div>
 	</div>
 
-	<!-- Header: Cinema's Logo and Search box +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+	<!-- Header:  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 	<div id="header"
 		style="background-color: rgb(68, 40, 45); font-family: verdana; color: white;">
 		<h1>
