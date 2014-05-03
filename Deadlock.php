@@ -319,7 +319,7 @@
 						style="visibility: hidden;">&rarr;</span><span id="Bob3">&nbsp;&nbsp;
 						Answer Q2;</span> <br /> <span id="arrow4"
 						style="visibility: hidden;">&rarr;</span><span id="Bob4">&nbsp;&nbsp;
-						Lock Q3;</span> <br /> <span id="text3" style="float: left">&nbsp;&nbsp;
+						Lock Q3;</span> <br /> <span id="text3" style="float: left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
 						Answer Q3;</span> <br /> <span style="float: left">&nbsp;&nbsp;
 						UnLock Q3;</span> <br /> <span style="float: left">&nbsp;&nbsp;
 						UnLock Q2;</span> <br /> <span style="float: left">&nbsp;&nbsp;
