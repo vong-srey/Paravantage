@@ -250,6 +250,7 @@
 		} else {
 			document.userForm.question.value = "";
 		}
+		document.userForm.answer.value="";
 		document.getElementById("Bob" + index).style.backgroundColor="#00FF00";
 		document.getElementById("arrow"+index).style.visibility = "hidden";
 
