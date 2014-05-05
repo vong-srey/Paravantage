@@ -408,7 +408,7 @@
 		
 		
 		<div id="middle" style="background: none repeat scroll 0% 0% rgb(118, 150, 154); width: 20%">
-			<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+			<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> 
 			<h2>
 				<div id="analogy" style="color: #FFF400; visibility: hidden;">
 							<span id="arrow">&rarr;</span>
@@ -432,6 +432,7 @@
 					<br />	<span id="arrow5" style="visibility: hidden;">&rarr;</span>
 							<span>} </span> 
 							<span id="arrowa5" style="visibility: hidden;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &larr;</span>
+					<br />
 					<br />
 					<br />
 				</div>
