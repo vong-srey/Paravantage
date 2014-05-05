@@ -205,6 +205,7 @@
 
 	function Freeze(){
 		if(deadlock){
+			deadlock = false;
 			var dialogoverlay = document.getElementById('dialogoverlay');
 	         dialogoverlay.innerHTML = '<img src="data/deadlock.png" width="500" height="500" title="Lock" alt="Lock" align="center" onclick="unfreeze()" />';
 			dialogoverlay.style.display = "block";
