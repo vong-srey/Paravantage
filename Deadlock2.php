@@ -127,7 +127,7 @@
 				document.getElementById("Q0").style.visibility = "hidden";
 				document.getElementById("L0").style.visibility = "hidden";
 				document.load.loadButton.disabled=true;
-				document.getElementById("BobQ1").style.visibility = "visible";
+				document.getElementById("BobQ0").style.visibility = "visible";
 				document.getElementById("text1").style.backgroundColor="#00FF00"
 				document.getElementById("lockImage0").style.visibility = "visible";
 				document.getElementById("lockbutton").style.visibility = "visible";
@@ -176,6 +176,7 @@
 			document.getElementById("lockImage"+counter).style.visibility = "hidden";
 			document.getElementById("Q"+counter).style.visibility = "visible";
 			document.getElementById("L"+counter).style.visibility = "visible";
+			document.getElementById("BobQ"+counter).style.visibility = "hidden";
 			counter =counter-2;
 			document.getElementById("arrow"+index).style.visibility = "visible";
 // 			var theDelay = 8;
@@ -185,6 +186,7 @@
 			document.getElementById("lockImage"+counter).style.visibility = "hidden";
 			document.getElementById("L"+counter).style.visibility = "visible";
 			document.getElementById("Q"+counter).style.visibility = "visible";
+			document.getElementById("BobQ"+counter).style.visibility = "hidden";
 			document.getElementById("Bob"+index).style.backgroundColor="#00FF00"
 			Alert.render("Bob Wins!!!");
 			document.userForm.lockbutton.disabled=true;
@@ -242,7 +244,7 @@
 			<h3>Bob (Thread 1)</h3>
 			<br />
 			<h3>
-				QUESTION: &nbsp;&nbsp;&nbsp;&nbsp; <span id="BobQ1"
+				QUESTION: &nbsp;&nbsp;&nbsp;&nbsp; <span id="BobQ0"
 					style="visibility: hidden; color: #7FCA9F">Q1</span> <span
 					id="BobQ2" style="visibility: hidden; color: #7FCA9F"> , Q2</span>
 					<span
