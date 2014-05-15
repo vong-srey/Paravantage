@@ -155,7 +155,7 @@
 			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
 		}
 
-		xmlhttp.open("GET","deadlock-question.php",true);
+		xmlhttp.open("GET","HContendedLock-question.php",true);
 		xmlhttp.send();
 
 		xmlhttp.onreadystatechange=function(){

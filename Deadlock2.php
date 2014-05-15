@@ -40,6 +40,7 @@
 
 #dialogbox>div>#dialogboxbody {
 	background: #333;
+	font-size: 25px;
 	padding: 20px;
 	color: #FFF;
 }
