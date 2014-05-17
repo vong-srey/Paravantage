@@ -8,28 +8,6 @@
 	<style type="text/css" id="css"></style>
 	<script src="data/racecondition.js" type="text/javascript"></script>
 	
-	<script>
-	function loadGame(){
-
-		var xmlhttp;
-		if (window.XMLHttpRequest){// code for IE7+, Firefox, Chrome, Opera, Safari
-			xmlhttp=new XMLHttpRequest();
-		} else {// code for IE6, IE5
-			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-		}
-
-		xmlhttp.onreadystatechange=function(){
-			if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-		    	document.getElementById("p1-question").innerHTML=xmlhttp.responseText;
-				document.getElementById("vp-question").innerHTML=xmlhttp.responseText;
-			}
-		}
-	
-		xmlhttp.open("GET","racecondition-question.php",true);
-		xmlhttp.send();
-	}
-	</script>
-	
 </head>
 
 
@@ -122,8 +100,7 @@
 
 
 <div id="footer">
-	<div id="footer-uoa">
-		<a href="test.php"> Auckland University </a>
+	<div id="footer-uoa"> Auckland University
 	</div>
 	
 	<div id="footer-author">

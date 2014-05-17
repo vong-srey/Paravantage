@@ -1,25 +1,26 @@
 body {
 	margin: 0px;
 	padding: 0px;
-	background: none repeat scroll 0% 0% rgb(16, 16, 16);
+	background: none repeat scroll 0% 0% rgb(16,16,16);
 	color: white;
-	font: 12px verdana,sans-serif;
+	font-family: Comic Sans MS;
+	font-size: 12px 
 	}
 #header {
 	position: relative;
-	left: 10%;
-	width: 80%;
+	left: 5%;
+	width: 90%;
 	top: 0px;
 	height: 10%;
 	background: none repeat scroll 0% 0% rgb(68, 40, 45);
 }
 #content {
 	position: relative;
-	width: 80%;
-	left: 10%;
+	width: 90%;
+	left: 5%;
 	top: 10%;
 	color: white;
-	height: 80%;
+	height: 95%;
 	background: none repeat scroll 0% 0% rgb(47, 16, 21);
 	}
 #left {
@@ -38,14 +39,23 @@ body {
 	float: right;
 	width: 33%;
 	height: 100%;
-	background: none repeat scroll 0% 0% rgb(136, 162, 168);
+	background: none repeat scroll 0% 0% rgb(100, 140, 140);
 	color: blue;
 	}
 #middle {
 	position: relative;
 	padding: 10px;
 	float: left;
-	width: 31.1%;
+	width: 15.05%;
+	height: 100%;
+	background: none repeat scroll 0% 0% rgb(136, 162, 168);
+	color: blue;
+	}
+#middleleft {
+	position: relative;
+	padding: 10px;
+	float: left;
+	width: 15%;
 	height: 100%;
 	background: none repeat scroll 0% 0% rgb(100, 140, 140);
 	color: blue;
@@ -59,10 +69,7 @@ body {
 	height: 10%;
 	font: verdana;
 	font-size: 18px;
-	width: 80%;
-	left: 10%;
-	margin-top:420px
+	width: 90%;
+	left: 5%;
+	margin-top:490px
 	}
-
-
-
