@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-<title>Critical Section</title>
+<title>Mutual Exclusion</title>
 <link rel="stylesheet" href="data/mystyle.css" type="text/css"
 	media="screen">
 <style type="text/css" id="css">
@@ -204,12 +204,13 @@
 		index=index+1;
 		document.getElementById("arrowa"+index).style.visibility = "visible";
 		
-		if(index < 4){
+		if(index < 5){
 			document.getElementById("Q" + index).style.visibility = "hidden";
 			document.getElementById("vpQ" + index).style.visibility = "visible";
 		}
 		
-		if(index == 4){
+		if(index == 5){
+			document.getElementById("numbPlayed").innerHTML = "2";
 			var theDelay = 1; 		
 			var timer = setTimeout("vpUnlock()",(theDelay)*1000)
 			return;
@@ -232,10 +233,11 @@
 	
 	function vpFinished(){
 		document.getElementById("arrowa"+5).style.visibility = "hidden";
-		Alert.render("Bob (Thread 1) and VP (Thread 2) finished the playGame(). <br /> Bob (Thread 1) is the first winner and VP (Thread 2) is the last winner.");
+		Alert.render("Bob (Thread 1) and VP (Thread 2) finished the playGame() in the correct order.<br /> <h3>So, numbPlayed contains correct value, which is 2 at the end of the game.</h3>Bob (Thread 1) is the first winner and VP (Thread 2) is the last winner.<br /> But, Mutual Exclusion can lead to a Deadlock.<br /> If you would like to see a Deadlock, please go to DeadLock.php page.");
 	}
 	
 	function bobFinished(){		
+		document.getElementById("arrow6").style.visibility = "hidden";
 		var r = confirm("Bob (Thread 1) finished the game playGame() and the MethodLock lock released.\nLet's VP (Thread 2) acquire MethodLock lock and play playGame(). \n Would you like to see VP (Thread 2) process playGame()?");
 		if(r == true){
 			var theDelay = 2;
@@ -257,12 +259,13 @@
 		index=index+1;
 		document.getElementById("arrow"+index).style.visibility = "visible";
 		
-		if(index < 4){
+		if(index < 5){
 			document.getElementById("Q" + index).style.visibility = "hidden";
 			document.getElementById("BobQ" + index).style.visibility = "visible";
 		}
 		
-		if(index == 4){
+		if(index == 5){
+			document.getElementById("numbPlayed").innerHTML = "1";
 			document.userForm.submit.disabled=true;	
 			var theDelay = 1; 		// need to change to 3
 			var timer = setTimeout("unlock()",(theDelay)*1000)
@@ -274,7 +277,8 @@
 	function unlock(){
 		document.userForm.submit.disabled=true;
 		document.getElementById("arrow"+index).style.visibility = "hidden";
-		document.getElementById("text2").style.backgroundColor="#00FF00";				
+		document.getElementById("text2").style.backgroundColor="#00FF00";		
+				
 		index=index+1;
 		document.getElementById("arrow"+index).style.visibility = "visible";
 		
@@ -288,15 +292,14 @@
 		document.getElementById("text2").style.backgroundColor="rgb(118, 150, 154)";	
 		document.getElementById("mlock").style.visibility = "hidden";
 		document.getElementById("methodLock").style.visibility = "visible";
-		document.getElementById("lockImage1").style.visibility = "hidden";
-		for(var i=1; i<4; i++){
+		document.getElementById("lockImage1").style.visibility = "hidden";		
+		
+		for(var i=1; i<5; i++){
 			document.getElementById("Bob"+i).style.backgroundColor="rgb(118, 150, 154)";
 			document.getElementById("Q" + i).style.visibility = "visible";
 			document.getElementById("BobQ" + i).style.visibility = "hidden";
 		}
 		
-		
-
 				
 		var theDelay = 1;
 		var timer = setTimeout("bobFinished()",(theDelay)*1000)
@@ -324,7 +327,7 @@
 			<center>Parallel Programming Pitfalls</center>
 		</h1>
 		<h2>
-			<center>Critical Section</center>
+			<center>Mutual Exclusion</center>
 		</h2>
 			<button id="disable" style="visibility:hidden;" ></button>
 
@@ -347,6 +350,9 @@
 					<span id="Q2" style="color: #7FCA9F">Q2</span>
 					&nbsp;,&nbsp;
 					<span id="Q3" style="color: #7FCA9F">Q3</span>
+					<span id="Q4"></span>
+					&nbsp;,&nbsp;
+					<span style="color: #7FCA9F">numbPlayed=</span>					<span id="numbPlayed" style="color: #7FCA9F">0</span>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Locks:&nbsp; 
 					<span id="methodLock" style="color: #7FCA9F">MethodLock</span>
 			</center>
@@ -354,6 +360,7 @@
 		
 		<div id="left" style="width: 35%;">
 
+			<h2>Processor 1</h2>
 			<h3>Bob (Thread 1)
 				<span id="mlock" style="visibility: hidden; color: black; font-size: 13pt;">Acquiring MethodLock</span>
 			</h3>
@@ -364,8 +371,8 @@
 					<span id="BobQ1" style="visibility: hidden; color: #7FCA9F">Q1</span> 
 					<span id="BobQ2" style="visibility: hidden; color: #7FCA9F"> , Q2</span>
 					<span id="BobQ3" style="visibility: hidden; color: #7FCA9F"> , Q3</span>
+					<span id="BobQ4"></span>
 			</h3>
-			<br />
 			<form name="userForm">
 				<div id="p1-question">
 					<input type="text" name="question"
@@ -380,7 +387,7 @@
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
 
 			</form>
-			<br /> <br /> <br />
+			<br />
 			
 			<div>
 				<form name="loadgameForm">
@@ -400,7 +407,6 @@
 				style="visibility: hidden;" /><img id="lockImage3"
 				src="data/Lock.jpg" width="80" height="80" title="L2" alt="L2"
 				align="left" style="visibility: hidden;" /><br /> <br /> <br /> <br />
-			<br /> <br />
 		</div>
 
 		<div>
@@ -408,7 +414,7 @@
 		
 		
 		<div id="middle" style="background: none repeat scroll 0% 0% rgb(118, 150, 154); width: 20%">
-			<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> 
+			<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> 
 			<h2>
 				<div id="analogy" style="color: #FFF400; visibility: hidden;">
 							<span id="arrow">&rarr;</span>
@@ -418,20 +424,27 @@
 							<span id="text1">&nbsp;AcquireLock</span>
 							<span id="arrowa0" style="visibility: hidden;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &larr;</span>
 					<br /> 	<span id="arrow1" style="visibility: hidden;">&rarr;</span>
-							<span id="Bob1">&nbsp;&nbsp;&nbsp; Answer Q1;</span> 
+							<span id="Bob1">&nbsp;&nbsp;Answer Q1;</span> 
 							<span id="arrowa1" style="visibility: hidden;">&nbsp;&nbsp; &larr;</span>
 					<br /> 	<span id="arrow2" style="visibility: hidden;">&rarr;</span>
-							<span id="Bob2">&nbsp;&nbsp;&nbsp; Answer Q2;</span> 
+							<span id="Bob2">&nbsp;&nbsp;Answer Q2;</span> 
 							<span id="arrowa2" style="visibility: hidden;">&nbsp;&nbsp; &larr;</span>
 					<br /> 	<span id="arrow3" style="visibility: hidden;">&rarr;</span>
-							<span id="Bob3" >&nbsp;&nbsp;&nbsp; Answer Q3;</span> 
+							<span id="Bob3" >&nbsp;&nbsp;Answer Q3;</span> 
 							<span id="arrowa3" style="visibility: hidden;">&nbsp;&nbsp; &larr;</span>
+							
 					<br /> 	<span id="arrow4" style="visibility: hidden;">&rarr;</span>
+							<span id="Bob4" >&nbsp;&nbsp;numbPlayed++;</span> 
+							<span id="arrowa4" style="visibility: hidden;">&nbsp;&nbsp; &larr;</span>
+									
+									
+					<br /> 	<span id="arrow5" style="visibility: hidden;">&rarr;</span>
 							<span id="text2">&nbsp;UnLock Q3;</span>
-							<span id="arrowa4" style="visibility: hidden;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &larr;</span>
-					<br />	<span id="arrow5" style="visibility: hidden;">&rarr;</span>
+							<span id="arrowa5" style="visibility: hidden;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &larr;</span>
+					<br />	<span id="arrow6" style="visibility: hidden;">&rarr;</span>
 							<span>} </span> 
-							<span id="arrowa5" style="visibility: hidden;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &larr;</span>
+							<span id="arrowa6" style="visibility: hidden;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &larr;</span>
+					<br />
 					<br />
 					<br />
 					<br />
@@ -445,6 +458,7 @@
 
 		<div id="right" style="width: 40%; margin-left:-50px">
 			<div style="margin-left:50px">
+				<h2>Processor 2</h2>
 				<h3>VirtualPlayer-VP (Thread 2)
 					<span id="vpmlock" style="visibility: hidden; color: black; font-size: 13pt;">Acquiring MethodLock</span>
 				</h3>
@@ -455,9 +469,9 @@
 						<span id="vpQ1" style="visibility: hidden; color: #7FCA9F">Q1</span> 
 						<span id="vpQ2" style="visibility: hidden; color: #7FCA9F"> , Q2</span>
 						<span id="vpQ3" style="visibility: hidden; color: #7FCA9F"> , Q3</span>
+						<span id="vpQ4"></span>
 					
-					</h3>
-				<br />
+				</h3>
 				
 				<form name="vpForm">
 					<input type="text" name="question"
@@ -472,7 +486,7 @@
 						style="visibility: hidden; font-size: 10pt; font-family: Comic Sans MS;">
 						Lock Next Question</BUTTON>
 				</form>
-				<br /> <br /> <br />			
+				<br /> <br />			
 				
 				<div id="load-game">
 					<form>
@@ -484,7 +498,7 @@
 				
 				<br /> <img id="lockImage2" src="data/Lock.jpg" width="80"
 					height="80" title="L3" alt="L3" align="left"
-					style="visibility: hidden;" /> <br /> <br /> <br /> <br /> <br /> <br />
+					style="visibility: hidden;" /> <br /> <br /> <br /> <br /> 
 				</div>
 			</div>
 		</div>
