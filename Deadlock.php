@@ -299,7 +299,7 @@
 		</div>
 		<div id="left">
 
-			<h3>Bob (Thread 1)</h3>
+			<h3>Processor 1: Bob (Thread 1)</h3>
 			<br />
 			<h3>
 				QUESTION: &nbsp;&nbsp;&nbsp;&nbsp; <span id="BobQ1"
@@ -388,7 +388,7 @@
 
 		<div id="right">
 
-			<h3>Virtual Player (VP) (Thread 2)</h3>
+			<h3>Processor 2: Virtual Player (VP) (Thread 2)</h3>
 			<br />
 			<h3>
 				QUESTION:&nbsp;&nbsp;&nbsp;&nbsp; <span id="VPQ3"
