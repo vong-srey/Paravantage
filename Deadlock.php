@@ -244,6 +244,7 @@
 	}
 	function unfreeze(){
 		document.getElementById('dialogoverlay').style.display = "none";
+		Alert.render("The use of lock (to make Mutual Exclusion) can lead to a Deadlock.<br />In order to solve the DeadLock, your thread has to release the Lock before it acquire another Lock.<br />However, The Lock still can lead to ContentedLock.<br />Please go to HighlyContentedLock.php to see the Contented Lock example.")
 	}
 
 	</script>
