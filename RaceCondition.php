@@ -80,6 +80,7 @@
 
 	var index=1;
 	var vpindex=1;
+	var theDelayVPNex=3;
 	function CustomAlert() {
 		this.render = function(dialog) {
 			var winW = window.innerWidth;
@@ -136,7 +137,7 @@
 			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
 		}
 
-		xmlhttp.open("GET","deadlock-question.php",true);
+		xmlhttp.open("GET","racecondition-question.php",true);
 		xmlhttp.send();
 
 		xmlhttp.onreadystatechange=function(){
@@ -152,8 +153,6 @@
 //				document.getElementById("text1").style.backgroundColor="#00FF00"
 				document.getElementById("arrow0").style.visibility = "hidden";
 				document.getElementById("arrow1").style.visibility = "visible";
-				var theDelay = 0.5;
-		  		var timer = setTimeout("vpAcquireLock()",theDelay*1000)
 			}
 		}
 
@@ -184,12 +183,11 @@
 		document.vpForm.question.value = arr[0];
 		
 		vpindex = 1;
-		var theDelay = 0.5;
-  		var timer = setTimeout("vpNexQuest()",theDelay*1000)
+  		var timer = setTimeout("vpNexQuest()",theDelayVPNex*1000)
 	}
 	
 	function vpNexQuest(){
-		if(vpindex < 3){
+		if(vpindex < 4){
 			document.vpForm.question.value = arr[vpindex];
 		} else {
 			document.vpForm.question.value = "";
@@ -206,13 +204,11 @@
 		}
 		
 		if(vpindex == 5){
-			document.getElementById("numbPlayed").innerHTML = "1";
-			var theDelay = 0.5; 		
-			var timer = setTimeout("vpUnlock()",(theDelay)*1000)
+			document.getElementById("nump").innerHTML = "1";
+			var timer = setTimeout("vpUnlock()",(theDelayVPNex)*1000)
 			return;
 		}else{
-			var theDelay = 0.5; 		
-			var timer = setTimeout("vpNexQuest()",(theDelay)*1000)
+			var timer = setTimeout("vpNexQuest()",(theDelayVPNex)*1000)
 		}
 	}
 	
@@ -222,6 +218,7 @@
 		vpindex=vpindex+1;
 		document.getElementById("arrowa"+vpindex).style.visibility = "visible";
 		document.getElementById("arrowa6").style.visibility = "hidden";
+		document.getElementById("vpmlock").style.visibility = "hidden";
 	}
 	
 
@@ -229,12 +226,15 @@
 	function bobFinished(){		
 		document.getElementById("arrow6").style.visibility = "hidden";
 		document.getElementById("arrowa"+5).style.visibility = "hidden";
-		Alert.render("Bob (Thread 1) and VP (Thread 2) finished the playGame() in an incorrect order.<br /> <h3>numbPlayed is supposed to be 2. But, because of the Race Condition, the value of numbPlayed is 1.</h3>There are many solutions for this issue. But, we are showing only Mutual Exclusion.<br /> If you would like to see Mutual Exclusion, please go to MutualExclusion.php page.");
+		Alert.render("Bob (Thread 1) and VP (Thread 2) finished the playGame() in an incorrect order.<br /> <h3>nump is supposed to be 2. But, because of the Race Condition, the value of nump is 1.</h3>There are many solutions for this issue. But, we are showing only Mutual Exclusion.<br /> If you would like to see Mutual Exclusion, please go to MutualExclusion.php page.");
 	}
 
 	function nextQuest(){
+		if(index==1){
+	  		var timer = setTimeout("vpAcquireLock()",theDelayVPNex*1000)
+		}
 
-		if(index < 3){
+		if(index < 4){
 			document.userForm.question.value = arr[index];
 		} else {
 			document.userForm.question.value = "";
@@ -246,13 +246,13 @@
 		index=index+1;
 		document.getElementById("arrow"+index).style.visibility = "visible";
 		
-		if(index < 5){
+		if(index < 6){
 //			document.getElementById("Q" + index).style.visibility = "hidden";
 			document.getElementById("BobQ" + index).style.visibility = "visible";
 		}
 		
-		if(index == 5){
-			document.getElementById("numbPlayed").innerHTML = "1";
+		if(index == 6){
+			document.getElementById("nump").innerHTML = "1";
 			document.userForm.submit.disabled=true;	
 			var theDelay = 1; 		// need to change to 3
 			var timer = setTimeout("unlock()",(theDelay)*1000)
@@ -281,11 +281,12 @@
 		document.getElementById("methodLock").style.visibility = "visible";
 //		document.getElementById("lockImage1").style.visibility = "hidden";		
 		
-		for(var i=1; i<5; i++){
+		for(var i=1; i<6; i++){
 //			document.getElementById("Bob"+i).style.backgroundColor="rgb(118, 150, 154)";
 //			document.getElementById("Q" + i).style.visibility = "visible";
 			document.getElementById("BobQ" + i).style.visibility = "hidden";
 		}
+		
 		
 				
 		var theDelay = 1;
@@ -332,14 +333,15 @@
 				Shared &nbsp; Resources:&nbsp; 
 					<span id="Game" style="color: #7FCA9F">playGame() Body</span>
 					&nbsp;,&nbsp;
-					<span id="Q1" style="color: #7FCA9F">Q1</span>
+					<span id="Q1"></span>
+					<span id="Q2" style="color: #7FCA9F">Q1</span>
 					&nbsp;,&nbsp;
-					<span id="Q2" style="color: #7FCA9F">Q2</span>
+					<span id="Q3" style="color: #7FCA9F">Q2</span>
 					&nbsp;,&nbsp;
-					<span id="Q3" style="color: #7FCA9F">Q3</span>
-					<span id="Q4"></span>
+					<span id="Q4" style="color: #7FCA9F">Q3</span>
+					<span id="Q5"></span>
 					&nbsp;,&nbsp;
-					<span style="color: #7FCA9F">numbPlayed=</span>					<span id="numbPlayed" style="color: #7FCA9F">0</span>
+					<span style="color: #7FCA9F">nump=</span>					<span id="nump" style="color: #7FCA9F">0</span>
 					<span id="methodLock" style="color: #7FCA9F"></span>
 			</center>
 		</div>
@@ -347,17 +349,17 @@
 		<div id="left" style="width: 35%;">
 
 			<h2>Processor 1</h2>
-			<h3>Bob (Thread 1)
-				<span id="mlock" style="visibility: hidden; color: black; font-size: 13pt;"></span>
+			<h3>Bob (Thread 1) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
 			</h3>
 			
-			<br />
+			<span id="mlock" style="visibility: hidden; color: black; font-size: 13pt;">read=0</span>
 			<h3>
 				QUESTION: &nbsp;&nbsp;&nbsp;&nbsp; 
-					<span id="BobQ1" style="visibility: hidden; color: #7FCA9F">Q1</span> 
-					<span id="BobQ2" style="visibility: hidden; color: #7FCA9F"> , Q2</span>
-					<span id="BobQ3" style="visibility: hidden; color: #7FCA9F"> , Q3</span>
-					<span id="BobQ4"></span>
+					<span id="BobQ1"></span>
+					<span id="BobQ2" style="visibility: hidden; color: #7FCA9F">Q1</span> 
+					<span id="BobQ3" style="visibility: hidden; color: #7FCA9F"> , Q2</span>
+					<span id="BobQ4" style="visibility: hidden; color: #7FCA9F"> , Q3</span>
+					<span id="BobQ5"></span>
 			</h3>
 			<form name="userForm">
 				<div id="p1-question">
@@ -403,27 +405,33 @@
 					<br /> 	<span id="arrow0" style="visibility: hidden;"></span>
 							<span id="text1">&nbsp;</span>
 							<span id="arrowa0" style="visibility: hidden;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+							
 					<br /> 	<span id="arrow1" style="visibility: hidden;">&rarr;</span>
-							<span id="Bob1">&nbsp;&nbsp;Answer Q1;</span> 
+							<span id="Bob1">&nbsp;&nbsp;int read=nump;</span> 
 							<span id="arrowa1" style="visibility: hidden;">&nbsp;&nbsp; &larr;</span>
+									
+									
 					<br /> 	<span id="arrow2" style="visibility: hidden;">&rarr;</span>
-							<span id="Bob2">&nbsp;&nbsp;Answer Q2;</span> 
+							<span id="Bob2">&nbsp;&nbsp;Answer Q1;</span> 
 							<span id="arrowa2" style="visibility: hidden;">&nbsp;&nbsp; &larr;</span>
 					<br /> 	<span id="arrow3" style="visibility: hidden;">&rarr;</span>
-							<span id="Bob3" >&nbsp;&nbsp;Answer Q3;</span> 
+							<span id="Bob3">&nbsp;&nbsp;Answer Q2;</span> 
 							<span id="arrowa3" style="visibility: hidden;">&nbsp;&nbsp; &larr;</span>
-							
 					<br /> 	<span id="arrow4" style="visibility: hidden;">&rarr;</span>
-							<span id="Bob4" >&nbsp;&nbsp;numbPlayed++;</span> 
+							<span id="Bob4" >&nbsp;&nbsp;Answer Q3;</span> 
 							<span id="arrowa4" style="visibility: hidden;">&nbsp;&nbsp; &larr;</span>
+							
+					<br /> 	<span id="arrow5" style="visibility: hidden;">&rarr;</span>
+							<span id="Bob5" >&nbsp;&nbsp;nump=read+1;</span> 
+							<span id="arrowa5" style="visibility: hidden;">&nbsp;&nbsp; &larr;</span>
 									
 									
-					<br /> 	<span id="arrow5" style="visibility: hidden;"></span>
+					<br /> 	<span id="arrow6" style="visibility: hidden;"></span>
 							<span id="text2">&nbsp;</span>
-							<span id="arrowa5" style="visibility: hidden;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-					<br />	<span id="arrow6" style="visibility: hidden;">&rarr;</span>
+							<span id="arrowa6" style="visibility: hidden;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+					<br />	<span id="arrow7" style="visibility: hidden;">&rarr;</span>
 							<span>} </span> 
-							<span id="arrowa6" style="visibility: hidden;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &larr;</span>
+							<span id="arrowa7" style="visibility: hidden;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &larr;</span>
 					<br />
 					<br />
 					<br />
@@ -440,16 +448,17 @@
 			<div style="margin-left:50px">
 				<h2>Processor 2</h2>
 				<h3>VirtualPlayer-VP (Thread 2)
-					<span id="vpmlock" style="visibility: hidden; color: black; font-size: 13pt;"></span>
+					
 				</h3>
 				<br />
-				
+				<span id="vpmlock" style="visibility: hidden; color: black; font-size: 13pt;">read=0</span>
 				<h3>
 					QUESTION:&nbsp;&nbsp;&nbsp;&nbsp; 
-						<span id="vpQ1" style="visibility: hidden; color: #7FCA9F">Q1</span> 
-						<span id="vpQ2" style="visibility: hidden; color: #7FCA9F"> , Q2</span>
-						<span id="vpQ3" style="visibility: hidden; color: #7FCA9F"> , Q3</span>
-						<span id="vpQ4"></span>
+						<span id="vpQ1"></span>
+						<span id="vpQ2" style="visibility: hidden; color: #7FCA9F">Q1</span> 
+						<span id="vpQ3" style="visibility: hidden; color: #7FCA9F"> , Q2</span>
+						<span id="vpQ4" style="visibility: hidden; color: #7FCA9F"> , Q3</span>
+						<span id="vpQ5"></span>
 					
 				</h3>
 				
@@ -471,7 +480,7 @@
 				<div id="load-game">
 					<form>
 						<input type="button" onclick="loadGame()"
-							value="Load Game & Lock The First Question" disabled="disabled"
+							value="Load Game" disabled="disabled"
 							style="font-size: 30pt; font-family: Comic Sans MS;"> </input>
 					</form>
 				</div>
