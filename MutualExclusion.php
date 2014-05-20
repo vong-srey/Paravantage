@@ -447,7 +447,7 @@
 							<span id="arrowa4" style="visibility: hidden;">&nbsp;&nbsp; &larr;</span>
 							
 					<br /> 	<span id="arrow5" style="visibility: hidden;">&rarr;</span>
-							<span id="Bob5" >&nbsp;&nbsp;read=nump+1;</span> 
+							<span id="Bob5" >&nbsp;&nbsp;nump=read+1;</span> 
 							<span id="arrowa5" style="visibility: hidden;">&nbsp;&nbsp; &larr;</span>
 									
 									
