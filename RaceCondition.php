@@ -203,7 +203,7 @@
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<button id="lockbutton2" disabled="disabled"
 							style="visibility: hidden; font-size: 10pt; font-family: Comic Sans MS;">
-							Lock Next Question</BUTTON>
+							Lock Next Question</button>
 					</form>
 					
 					<br /> <br />			
