@@ -1,0 +1,66 @@
+#dialogoverlay {
+	display: none;
+	opacity: .8;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	background: #FFF;
+	width: 100%;
+	z-index: 10;
+}
+
+#dialogbox {
+	display: none;
+	position: fixed;
+	background: #000;
+	border-radius: 7px;
+	width: 550px;
+	z-index: 10;
+}
+
+#dialogbox>div {
+	background: #FFF;
+	margin: 8px
+}
+
+#dialogbox>div>#dialogboxhead {
+	background: #666;
+	font-size: 19px;
+	padding: 10px;
+	color: #CCC;
+}
+
+#dialogbox>div>#dialogboxbody {
+	background: #333;
+	padding: 20px;
+	color: #FFF;
+}
+
+#dialogbox>div>#dialogboxfoot {
+	background: #666;
+	padding: 10px;
+	text-align: right;
+}
+
+#arrow{	color: blue; }
+#arrow0{	color: blue; }
+#arrow1{	color: blue; }
+#arrow2{	color: blue; }
+#arrow3{	color: blue; }
+#arrow4{	color: blue; }
+#arrow5{	color: blue; }
+#arrow6{	color: blue; }
+#arrow7{	color: blue; }
+#arrow8{	color: blue; }
+#arrow9{	color: blue; }
+#arrowa{	color: blue; }
+#arrowa0{	color: blue; }
+#arrowa1{	color: blue; }
+#arrowa2{	color: blue; }
+#arrowa3{	color: blue; }
+#arrowa4{	color: blue; }
+#arrowa5{	color: blue; }
+#arrowa6{	color: blue; }
+#arrowa7{	color: blue; }
+#arrowa8{	color: blue; }
+#arrowa9{	color: blue; }
