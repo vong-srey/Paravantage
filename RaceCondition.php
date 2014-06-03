@@ -44,7 +44,7 @@
 			</h2>
 				<button id="disable" style="visibility:hidden;" ></button>
 
-				<span style="float: right;"> <a href="index.php"
+				<span style="float: right;"> <a href="Home.php"
 					style="color: #CC0000"><right> HOME </right></a>
 				</span>
 

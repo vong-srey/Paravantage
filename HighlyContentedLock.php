@@ -48,7 +48,7 @@
 				style="font-family: Comic Sans MS; background-color: #E96D63; color: #000000; font-size: 10pt;"
 				onclick="window.location.href='Deadlock.php'">Go to Deadlock</button>
 
-			<span style="float: right;"> <a href="index.php"
+			<span style="float: right;"> <a href="Home.php"
 				style="color: #CC0000"><right> HOME </right></a>
 			</span>
 		</div>
