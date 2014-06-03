@@ -1,0 +1,485 @@
+body {
+	margin: 0px;
+	padding: 0px;
+	background: none repeat scroll 0% 0% rgb(16, 16, 16);
+	color: white;
+	font: 12px verdana,sans-serif;
+	}
+	
+.cleaner {
+	clear: both;
+	height: 1px; margin: 0;
+}
+	
+#main {
+	position: relative;
+	width: 1000px;
+	margin: 0px auto;
+}
+	
+#topbg {
+	position: absolute; top: 0; left: 0; z-index: -1;
+	width: 100%; height: 143px;
+	background: none repeat scroll 0% 0% rgb(47, 16, 21); opacity: 0.25;
+}
+	
+#header {
+	position: relative;
+	width: 1000px;
+	height: 70px;
+	background: none repeat scroll 0% 0% rgb(68, 40, 45);
+}
+
+#game_section {
+	position: relative;
+	top: 10px;
+	left: -20px;
+	margin: 0px;
+	font-size: 20px;
+	line-height: 1.33;
+	text-transform: uppercase;
+	text-align: right;
+	font: 15px verdana,sans-serif
+}
+
+
+
+
+
+
+
+
+
+/* @group Header */
+#hdr-overlay {
+	position: relative; 
+	top: -15px; 
+	left: 14px;
+	width: 780px; height: 145px;
+	}
+	
+#header h1 {
+	position: relative;
+	top: 10px;
+	left: 20px;
+	margin: 0px;
+	font-size: 25px;
+	line-height: 1.33;
+	font-weight: bold;
+	text-transform: uppercase;
+	text-align: left;
+}
+	
+	
+#header .box {
+	position: absolute; top: 6px;
+	width: 75px; height: 25px;
+	background: silver;
+	}
+	
+#hdr-box1 { left: 15px }
+
+#hdr-box2 { left: 100px }
+
+#hdr-box3 { left: 185px }
+
+#hdr-box4 { left: 270px }
+/* @end */
+
+
+
+
+
+
+
+
+
+
+
+#question-label {
+	position: relative;
+	top: 50px;
+	font-size: 14px;
+	font-weight: bold;
+	text-transform: uppercase;
+	text-align: left;
+	
+}
+
+
+
+#p1-question{
+	position: relative;
+	padding: 10px 0 0 0 ;
+	top: 70px;
+	height: 30px;
+	font-size: 15px;
+	background: white;
+	text-align: center;
+	vertical-align: middle;
+}
+#vp-question{
+	position: relative;
+	padding: 10px 0 0 0 ;
+	top: 70px;
+	height: 30px;
+	font-size: 15px;
+	background: white;
+	text-align: center;
+	vertical-align: middle;
+}
+
+
+#answer {
+	position: relative;
+	padding: 10px 0 0 0 ;
+	top: 100px;
+	height: 30px;
+	font-size: 15px;
+	text-align: center;
+	vertical-align: middle;
+}
+
+#load-game{
+	position: relative;
+	padding: 10px 0 0 0 ;
+	top: 200px;
+	height: 30px;
+	font-size: 15px;
+	text-align: center;
+	vertical-align: middle;
+}
+
+
+/* @group menu */
+
+/* general menu */
+#menu {
+	margin: 0px; padding: 0px 0;
+	list-style-type: none;
+	height: 63px;
+	border-top: 10px solid rgb(47, 16, 21);
+	border-bottom: 0px rgb(47, 16, 21);
+	font-weight: bold;
+	}
+	
+#menu li {
+	float: left;
+	margin: 0; padding: 0;
+	width: 25%;
+	}
+
+#menu a {
+	position: relative;
+	display: block;
+	height: 60px;
+	font-size: 22px;
+	line-height: 60px;
+	text-decoration: none;
+	text-align: center;
+	vertical-align: middle;
+	background: rgb(136, 162, 168);
+	color: rgb(11, 27, 31);
+	border-right: 10px solid rgb(47, 16, 21);
+	}
+	
+#menu a span {
+	display: block;
+	position: absolute; top: 5px; left: 8px;
+	width: 8px; height: 8px;
+	background: white;
+	}
+	
+#menu a.sel {
+	background: none repeat scroll 0% 0% rgb(90, 90, 90);
+ 	color: white; /*rgb(136, 162, 168);*/
+	border-right: 10px solid rgb(47, 16, 21);
+
+}
+	
+#menu a:hover {
+	position:relative;
+	top:-10px;
+}
+	
+/* general menu end */
+
+
+/* hover menu on movies menu */
+#movies-menu {
+	cursor: normal; text-decoration: none;
+	position: relative;
+}
+
+#movies-menu span {
+	margin-left: -999em;
+	position: absolute;
+	
+}
+
+#movies-menu:hover span {
+	box-shadow: 5px 5px 5px rgba(250, 250, 250, 0); 
+	-webkit-box-shadow: 5px 5px rgba(250, 250, 250, 0.1); 
+	-moz-box-shadow: 5px 5px rgba(250, 250, 250, 0.1);
+	background-color: rgb(136, 162, 168); 
+	color: rgb(11, 27, 31);
+	text-align: top;
+	position: absolute; left: -100px; 
+	top: 60px; z-index: 99;
+	line-height: 10px;
+	font-size: 20px;
+	margin-left: 0; width: 250px; height:20px;
+	border: 5px solid rgb(47, 16, 21);
+
+}
+
+#classic { margin: 10px; padding: 0.8em 1em; }
+/* hover menu ends */
+	
+/* @group menu end */
+
+
+
+
+
+
+
+
+
+
+/* @contents */
+#content {
+	padding: 1px;
+	margin: 3px 0px 0px 0px;
+	color: white;
+	height: 500px;
+	background: none repeat scroll 0% 0% rgb(47, 16, 21);
+	}
+	
+#content a {
+	padding: 2px 3px;
+	}
+	
+#content p {
+	margin: 0.25em 0;
+	}
+	
+#left {
+	float: left;
+	width: 300px;
+	height: 475px;
+	padding: 10px 20px;
+	background: none repeat scroll 0% 0% rgb(136, 162, 168);
+	color: blue;
+	}
+	
+#left h3 {
+	margin: 0.5em 0 0.3em;
+	font-size: 15px;
+	font-weight: bold;
+	position: relative; 
+	}
+
+	
+#left dt {
+	float: left;
+	font-weight: bold;
+	}
+	
+#left dd {
+	margin: 1em 0 1em 6em;
+	}
+	
+#ico {
+	float: left;
+	padding: 5px;
+	}
+	
+#left h4 {
+	margin: 0 0 0 6em;
+	font-size: 100%;
+	font-weight: bold;
+	}
+	
+#left ul {
+	margin: 0 0 0 6em; padding: 0;
+	color: red;
+	list-style-type: square;
+	list-style-position: inside;
+	}
+	
+	
+#middle {
+	position: relative;	
+	float: left;
+	left: 8px;
+	width: 200px;
+	height: 475px;
+	padding: 10px 50px;
+	background: none repeat scroll 0% 0% rgb(100, 140, 140);
+}
+
+#middle h3 {
+	margin: 0.5em 0 0.3em;
+	font-size: 15px;
+	font-weight: bold;
+	position: relative; 
+	color:rgb(0, 0, 0)
+	}
+	
+	
+
+#right {
+	position: relative;	
+	float: right;
+	width: 300px;
+	height: 475px;
+	padding: 10px 20px;
+	color: red;
+	background: none repeat scroll 0% 0% rgb(136, 162, 168);
+	}
+	
+#right h3 {
+	margin: 0.5em 0 0.3em;
+	font-size: 15px;
+	font-weight: bold;
+	position: relative; 
+	}
+	
+#right h3 span {
+	display: inline-block;
+	width: 9px; height: 9px;
+	margin-right: 1em;
+	border: 1px solid silver;
+	vertical-align: middle;
+	}
+	
+#right .photo {
+	float: left;
+	margin: 0 15px 15px 0;
+	}
+	
+#right h4 {
+	margin: 0;
+	font-size: 100%;
+	font-weight: bold;
+	}
+	
+#right .link {
+	text-align: right;
+	}
+	
+#rbox {
+	float: left;
+	position: relative;
+	width: 180px;
+	margin: 15px 0 20px 0;
+	padding: 2px 5px 2px 30px;
+	font-size: 10px;
+	line-height: 1.2;
+	}
+	
+#rbox span {
+	display: block;
+	position: absolute; top: 5px; left: 8px;
+	width: 8px; height: 8px;
+	background: white;
+	}
+	
+#right-button {
+	float: right;
+	margin: 15px 0 20px 0;
+	width: 200px;
+	height: 50px;
+	background: none repeat scroll 0% 0% rgb(90, 90, 90);
+	color: white; /*rgb(136, 162, 168);*/
+	border: 1px solid rgb(90, 90, 90);
+	text-align: center;
+	font: verdana;
+	font-size: 20px;
+}
+
+#right-button:hover {
+	position: relative;
+	font: verdana;
+	font-size: 20px;
+	top: -10px;
+}
+
+/*
+#right button:hover {
+	position: relative;
+	top: -5px;
+	float: right;
+	margin: 15px 0 20px 0;
+	width: 100px;
+	height: 23px;
+	background: none repeat scroll 0% 0% rgb(136, 162, 168);
+	color: rgb(47, 16, 21);
+	text-align: center;
+}*/
+
+
+/* @contents ends */
+
+
+
+
+
+
+
+
+
+
+#footer {
+	background: none repeat scroll 0% 0% rgb(68, 40, 45);
+	color: rgb(11, 27, 31)
+	border-color: rgb(27, 42, 45);
+	margin: 0px 0 0px 0;
+	text-align: left;
+	height: 55px;
+	line-height: 50px;
+	vertical-align: middle;
+	font: verdana;
+	font-size: 18px;
+	}
+	
+#footer a {
+	background: none repeat scroll 0% 0% transparent;
+	color: rgb(11, 27, 31);
+	font: verdana;
+}
+
+#footer-td{
+	position:relative;
+	background: none repeat scroll 0% 0% rgb(136, 162, 168); 
+	color: rgb(11, 27, 31); 
+	border-color: rgb(27, 42, 45);
+}
+
+#footer-share-social-network{
+	width:140px;
+	height:50px; 
+	position:absolute; 
+	left:1400px;
+}
+
+#footer a:hover {
+	font-weight: bold;
+	}
+
+#footer-author {
+	position: relative;	
+	top: 10px;
+	right: 20px;
+	text-align: right; 
+	font: 12px verdana,sans-serif;
+}
+
+#footer-uoa {
+	position: relative;	
+	top: 10px;
+	left: 20px;
+	text-align: left; 
+	font: 15px verdana,sans-serif;
+}

@@ -169,7 +169,7 @@
 				document.getElementById("L1").style.visibility = "hidden";
 				document.load.loadButton.disabled=true;
 				document.getElementById("BobQ1").style.visibility = "visible";
-				document.getElementById("text1").style.backgroundColor="#00FF00"
+				document.getElementById("text1").style.backgroundColor="#006400"
 				document.getElementById("lockImage1").style.visibility = "visible";
 				document.getElementById("lockbutton").style.visibility = "visible";
 				document.getElementById("arrow").style.visibility = "hidden";
@@ -192,7 +192,7 @@
 	
 	
 	function nextQuest(){
-		document.getElementById("Bob" + index).style.backgroundColor="#00FF00";
+		document.getElementById("Bob" + index).style.backgroundColor="#006400";
 		document.getElementById("arrow"+index).style.visibility = "hidden";
 		document.userForm.submit.disabled=true;
 		document.userForm.lockbutton.disabled=false;
@@ -209,7 +209,7 @@
 				document.userForm.question.value = "";
 				document.userForm.answer.value="";
 				document.userForm.lockbutton.value="Lock Next Question";
-				document.getElementById("Bob"+index).style.backgroundColor="#00FF00"
+				document.getElementById("Bob"+index).style.backgroundColor="#006400"
 				document.userForm.submit.disabled=true;
 				document.userForm.lockbutton.disabled=false;
 				document.getElementById("arrow"+index).style.visibility = "hidden";
@@ -217,7 +217,7 @@
 				document.getElementById("lockImage"+(idx-1)).style.visibility = "hidden";
 				document.getElementById("lImage"+(idx-1)).style.visibility = "visible";
 				document.getElementById("VPQ"+(idx-1)).style.visibility = "visible";
-				document.getElementById("VP"+idx).style.backgroundColor="#00FF00";
+				document.getElementById("VP"+idx).style.backgroundColor="#006400";
 				document.vpForm.question.style.backgroundImage = "none";
 				document.vpForm.question.value = arr[questionCounter-1];
 				index=index+1;
@@ -229,8 +229,8 @@
 				document.getElementById("lockImage"+(idx-1)).style.visibility = "hidden";
 				document.getElementById("lImage"+(idx-1)).style.visibility = "visible";
 				document.getElementById("BobQ"+(idx-1)).style.visibility = "hidden";
-				document.getElementById("Bob"+index).style.backgroundColor="#00FF00";
-				document.getElementById("VP7").style.backgroundColor="#00FF00";
+				document.getElementById("Bob"+index).style.backgroundColor="#006400";
+				document.getElementById("VP7").style.backgroundColor="#006400";
 				document.getElementById("VPQ"+(idx-1)).style.visibility = "visible";
 				document.vpForm.question.value = arr[questionCounter-1];
 				document.userForm.question.value = "";
@@ -248,8 +248,8 @@
  			document.getElementById("Q"+(idx-2)).style.visibility = "visible";
 			document.getElementById("L"+(idx-2)).style.visibility = "visible";
 			document.getElementById("lImage"+(idx-2)).style.visibility = "hidden";
- 			document.getElementById("VP"+idx).style.backgroundColor="#00FF00";
- 			document.getElementById("VP"+idx+idx).style.backgroundColor="#00FF00";
+ 			document.getElementById("VP"+idx).style.backgroundColor="#006400";
+ 			document.getElementById("VP"+idx+idx).style.backgroundColor="#006400";
  			document.vpForm.question.value = "";
  			document.vpForm.question.style.backgroundImage = "url('data/wait1.png')";
  			document.vpForm.question.style.backgroundRepeat="no-repeat"
@@ -262,7 +262,7 @@
 			document.getElementById("lockImage"+idx).style.visibility = "visible";
 			document.userForm.submit.disabled=false;
 			document.userForm.lockbutton.disabled=true;
-			document.getElementById("Bob"+index).style.backgroundColor="#00FF00"
+			document.getElementById("Bob"+index).style.backgroundColor="#006400"
 			document.getElementById("arrow"+index).style.visibility = "hidden";
 			document.getElementById("arrow"+(index+1)).style.visibility = "visible";
 			index=index+1;
@@ -287,10 +287,9 @@
 			<div id="dialogboxfoot"></div>
 		</div>
 	</div>
-
+<div id="main">
 	<!-- Header:  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-	<div id="header"
-		style="background-color: rgb(68, 40, 45); font-family: verdana; color: white;">
+	<div id="header" style="background-color: rgb(68, 40, 45); font-family: verdana; color: white;">
 		<h1>
 			<center>Parallel Programming Pitfalls</center>
 		</h1>
@@ -298,11 +297,11 @@
 			<center>Heavily Contended Lock</center>
 		</h2>
 		<button id="disable"
-			style="font-family: Comic Sans MS; background-color: #E96D63; color: #7FCA9F; font-size: 10pt;"
+			style="font-family: Comic Sans MS; background-color: #E96D63; color: #000000; font-size: 10pt;"
 			onclick="window.location.href='Deadlock2.php'">Disable VP</button>
 			
 			<button id="disable"
-			style="font-family: Comic Sans MS; background-color: #E96D63; color: #7FCA9F; font-size: 10pt;"
+			style="font-family: Comic Sans MS; background-color: #E96D63; color: #000000; font-size: 10pt;"
 			onclick="window.location.href='Deadlock.php'">Go to Deadlock</button>
 
 		<span style="float: right;"> <a href="index.php"
@@ -313,8 +312,7 @@
 	<!-- @ Header ends here +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 
 	<div id="content">
-		<div id="resources"
-			style="font-family: Comic Sans MS; color: #E96D63; font-size: 12pt;">
+		<div id="resources"	style="font-family: Comic Sans MS; color: #E96D63; font-size: 12pt;">
 			<center>
 				Shared &nbsp;&nbsp; Resources:&nbsp;&nbsp; <span id="Q1"
 					style="color: #7FCA9F">Q1</span>&nbsp;&nbsp; <span id="Q3"
@@ -327,8 +325,7 @@
 			</center>
 		</div>
 		<div id="left">
-
-			<h3>Processor 1: Bob (Thread 1)</h3>
+			<h1>Processor 1: Bob (Thread 1)</h1>
 			<br />
 			<h3>
 				QUESTION: &nbsp;&nbsp;&nbsp;&nbsp; <span id="BobQ1"
@@ -346,20 +343,18 @@
 				<br /> <br /> <input type="text" name="answer"
 					style="width: 200px; height: 30px;"></input> <br /> <br /> <input
 					type="button" onclick="nextQuest()" value="Submit" name="submit"
-					disabled="disabled" style="font-size: 30pt;"> </input>
+					disabled="disabled"> </input>
 
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
 					type="button" id="lockbutton" disabled="disabled" name="lockbutton"
-					value="Lock Next Question" onclick="nextLock()"
-					style="visibility: hidden; font-size: 30pt;"> </input>
+					value="Lock Next Question" onclick="nextLock()"> </input>
 
 			</form>
 			<br /> <br /> <br />
 			<div id="load-game">
 				<form name="load">
 					<input type="button" onclick="loadGame()"
-						value="Load Game & Lock The First Question" name="loadButton"
-						style="font-size: 30pt;"> </input>
+						value="Load Game & Lock The First Question" name="loadButton"> </input>
 				</form>
 			</div>
 			<br /> <img id="lockImage1" src="data/Lock.jpg" width="80"
@@ -371,8 +366,7 @@
 				align="left" style="visibility: hidden;"/<br /> <br /> <br /> <br />
 			<br /> <br /> <br /> <br />
 		</div>
-
-		<div id="middle">
+		<div id="middleLeft">
 			<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
 			<br />
 			<h2>
@@ -399,12 +393,11 @@
 			</h2>
 			<br />
 		</div>
-
-		<div id="middleleft">
+		<div id="middleRight">
 			<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
 			<br />
 			<h2>
-				<div id="analogy2" style="color: #00C90D; visibility: hidden;">
+				<div id="analogy2" style="color: #FFFFF; visibility: hidden;">
 					<span style="float: left">Thread2() { &nbsp;&nbsp;&nbsp;&nbsp;</span>
 					<br /> <span id="VP2" style="float: left">&nbsp;&nbsp; Lock Q1;</span>
 					<br /> <span id="VP3" style="float: left">&nbsp;&nbsp; Answer Q1;</span>
@@ -420,9 +413,8 @@
 			</h2>
 			<br />
 		</div>
-
-
-		<div id="right">
+	
+	<div id="right">
 
 			<h3>Processor 2: Virtual Player (VP) (Thread 2)</h3>
 			<br />
@@ -442,7 +434,7 @@
 					type="text" name="answer" style="width: 200px; height: 30px;"
 					readonly="readonly"></input> <br /> <br /> <input type="button"
 					value="Submit" disabled="disabled"
-					style="font-size: 30pt; font-family: Comic Sans MS;"> </input>
+					> </input>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<button id="lockbutton2" disabled="disabled"
 					style="visibility: hidden; font-size: 10pt; font-family: Comic Sans MS;">
@@ -453,7 +445,7 @@
 				<form>
 					<input type="button" onclick="loadGame()"
 						value="Load Game & Lock The First Question" disabled="disabled"
-						style="font-size: 30pt; font-family: Comic Sans MS;"> </input>
+						> </input>
 				</form>
 			</div>
 			<br /> <img id="lImage1" src="data/Lock.jpg" width="80"
@@ -467,15 +459,17 @@
 				style="visibility: hidden;" /><br /> <br /> <br /> <br /> <br /> <br />
 		</div>
 	</div>
-
-	<div id="footer">
-
-		<p>
-			<a href="test.php"> Auckland University </a> <span
-				style="float: right">Team: Nancy, Victor, Aravind</span>
-		</p>
-
-	</div>
-
+	<!-- footer begins here: ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+			
+		<div id="footer">
+			<div id="footer-uoa">		
+					University Of Auckland , Software Engineering.
+			</div>
+			<div id="footer-author">
+				Team: Victor, Nancy, Aravind
+			</div>
+		</div>
+	<!-- footer ends here: ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+</div>
 </body>
 </html>
